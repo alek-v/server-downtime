@@ -19,11 +19,12 @@ if (time() - $tolerate_time > $last_time + ($minutes * 60)) {
 	$time_diff_hours = gmdate("H:i:s", time() - $last_time);
 
 	// update log file
-	$log = 'Server downtime: ' . gmdate("H:i:s", time() - $last_time) . ' // Log date: ' . date('d/m/Y h:i:s', time()) . "\r\n" . $log;
+	$log = 'Server downtime: ' . gmdate("H:i:s", time() - $last_time) . ' // Log date: ' . date('d/m/Y H:i:s', time()) . "\r\n" . $log;
+
 	file_put_contents($check_log, $log);
 }
 
-// update time of last checking
+// update time of the last check
 file_put_contents($check_file, time());
 
 // how many errors to keep logged in database
@@ -35,6 +36,5 @@ if (sizeof($lines) > 1000) {
 	unset($lines[$last]); 
 }
 
-// we can show current time, last logged time and time difference
+// we can show current time, last logged time, and time difference
 echo '<div style="text-align:center;margin-top:50px;">' . time() . ' - ' . $last_time . ' - time diff: ' . round((time() - $last_time) / 60, 2) . '</div>';
-?>
