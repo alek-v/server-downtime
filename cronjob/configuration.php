@@ -1,6 +1,5 @@
 <?php
-// How often we are checking
-// Value bigger then this will be logged
+// Value bigger then this will be logged, if downtime is this value or more then save in log file
 $minutes = 1;
 
 // How much seconds to tolerate
